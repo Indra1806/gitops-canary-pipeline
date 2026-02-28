@@ -3,12 +3,16 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 
 // ─── SEED DATA ────────────────────────────────────────────────────────────────
 const today = new Date();
-const fmt = (d) => d.toISOString().split("T")[0];
+const fmt = (d) => {
+  const offset = d.getTimezoneOffset();
+  const localDate = new Date(d.getTime() - (offset * 60 * 1000));
+  return localDate.toISOString().split("T")[0];
+};
 const daysAgo = (n) => { const d = new Date(today); d.setDate(d.getDate() - n); return fmt(d); };
 const daysAhead = (n) => { const d = new Date(today); d.setDate(d.getDate() + n); return fmt(d); };
 
 const INITIAL_DATA = {
-  currentUser: { id: "u1", name: "Dr. Sarah Chen", role: "doctor", email: "sarah.chen@clinic.com" },
+  currentUser: null,
   users: [
     { id: "u1", name: "Dr. Sarah Chen", role: "doctor", email: "sarah.chen@clinic.com", password: "doc123", specialty: "General Practice", active: true },
     { id: "u2", name: "Dr. James Obi", role: "doctor", email: "james.obi@clinic.com", password: "doc456", specialty: "Cardiology", active: true },
@@ -137,7 +141,7 @@ function Modal({ title, children, onClose, size = "", footer }) {
 }
 
 // ─── LOGIN PAGE ───────────────────────────────────────────────────────────────
-function LoginPage({ users, onLogin }) {
+function LoginPage({ users, onLogin, theme, toggleTheme }) {
   const [email, setEmail] = useState("sarah.chen@clinic.com");
   const [password, setPassword] = useState("doc123");
   const [error, setError] = useState("");
@@ -152,14 +156,22 @@ function LoginPage({ users, onLogin }) {
 
   return (
     <div className="login-page">
-      <div className="login-card">
+      <div style={{ position: 'absolute', top: 20, right: 20 }}>
+        <label className="switch" style={{ fontSize: '12px' }}>
+          <input type="checkbox" checked={theme === "dark"} onChange={toggleTheme} />
+          <span className="slider"></span>
+        </label>
+      </div>
+      <div className="login-card" style={{ position: 'relative', overflow: 'hidden', borderTop: '4px solid var(--blue)' }}>
+        <div style={{ position: 'absolute', top: 0, right: 20, width: 30, height: 45, background: 'var(--blue)', clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '10px', fontWeight: 'bold', paddingTop: '2px' }}>v2.1</div>
         <div className="login-logo">
-          <div style={{ width: 100, height: 100, background: "linear-gradient(125deg, var(--red), var(--teal-light))", borderRadius: 20, margin: "0 auto 12px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 70 }}>🏥</div>
-          <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: 24, fontWeight: 100, color: "var(--text)" }}>ClinicOS</div>
-          <div style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 2 }}>Clinic Management System</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 20 }}>
+            <div style={{ width: 80, height: 80, background: "var(--teal-faint)", borderRadius: "50%", margin: "0 auto 12px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 50, border: '2px dashed var(--teal)' }}>🏥</div>
+            <div style={{ fontFamily: "'DM Serif Display', serif", fontSize: 24, fontWeight: 100, color: "var(--text)" }}>ClinicOS</div>
+            <div style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 2 }}>Clinic Management System</div>
+          </div>
         </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 20 }}>
+        <div style={{ marginTop: 24, display: "flex", flexDirection: "column", gap: 16 }}>
           <div className="form-group">
             <label className="form-label">Email Address</label>
             <input className="form-input" type="email" value={email} onChange={e => { setEmail(e.target.value); setError(""); }} placeholder="your@email.com" />
@@ -173,7 +185,7 @@ function LoginPage({ users, onLogin }) {
         </div>
 
         <div className="divider" />
-        <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.8px", fontWeight: 600 }}>Quick Access (Demo)</div>
+        <div style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.8px", fontWeight: 600 }}>Quick Access</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {[
             { label: "Dr. Sarah Chen", sub: "Doctor", color: "#d10c0c", u: { email: "sarah.chen@clinic.com", password: "doc123" } },
@@ -1121,7 +1133,7 @@ function MedicalRecords({ data, setData, showToast, currentUser }) {
   );
 }
 
-function RecordForm({ record, data, currentUser, onSave, onClose }) {
+function RecordForm({ record, data, onSave, onClose }) {
   const [form, setForm] = useState({
     patientId: record?.patientId || "",
     type: record?.type || "Consultation",
@@ -1179,7 +1191,7 @@ function RecordForm({ record, data, currentUser, onSave, onClose }) {
 }
 
 // ─── BILLING ─────────────────────────────────────────────────────────────────
-function Billing({ data, setData, showToast, currentUser }) {
+function Billing({ data, setData, showToast }) {
   const [showForm, setShowForm] = useState(false);
   const [viewInvoice, setViewInvoice] = useState(null);
   const [filterStatus, setFilterStatus] = useState("all");
@@ -1710,9 +1722,21 @@ export default function App() {
   const [toast, setToast] = useState(null);
   const [notifOpen, setNotifOpen] = useState(false);
 
+  // Theme state management
+  const [theme, setTheme] = useState(localStorage.getItem("clinic_theme") || "light");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("clinic_theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(prev => (prev === "light" ? "dark" : "light"));
+
   const showToast = useCallback((message, type = "success") => {
     setToast({ message, type, key: Date.now() });
   }, []);
+
+  const hideToast = useCallback(() => setToast(null), []);
 
   // Centralized Data Updater with Persistence
   const updateData = useCallback((updater) => {
@@ -1794,7 +1818,7 @@ export default function App() {
 
   if (!loggedIn || !data) return (
     <>
-      <LoginPage users={data ? data.users : []} onLogin={handleLogin} />
+      <LoginPage users={data ? data.users : []} onLogin={handleLogin} theme={theme} toggleTheme={toggleTheme} />
     </>
   );
 
@@ -1807,8 +1831,8 @@ export default function App() {
             <div className="sidebar-logo-icon">🏥</div>
             {!sidebarCollapsed && (
               <div>
-                <div className="sidebar-logo-text" style={{ fontFamily: "'DM Serif Display', serif" }}>ClinicOS</div>
-                <div className="sidebar-logo-sub">Management System</div>
+                <div className="sidebar-logo-text" style={{ fontFamily: "'DM Serif Display', serif" }}>ClinicOS    v2.1</div>
+                <div className="sidebar-logo-sub">Clinic Management System</div>
               </div>
             )}
           </div>
@@ -1857,6 +1881,12 @@ export default function App() {
               ))}
             </div>
             <div className="topbar-actions">
+              {/* Theme Switch */}
+              <label className="switch" style={{ fontSize: '11px', marginRight: '8px' }}>
+                <input type="checkbox" checked={theme === "dark"} onChange={toggleTheme} />
+                <span className="slider"></span>
+              </label>
+
               <div style={{ position: "relative" }}>
                 <button className="btn-icon notif-btn" onClick={() => setNotifOpen(o => !o)}>
                   🔔
@@ -1882,18 +1912,23 @@ export default function App() {
           </header>
 
           <div className="content" onClick={() => notifOpen && setNotifOpen(false)}>
-            {page === "dashboard" && <Dashboard {...pageProps} onNavigate={setPage} />}
-            {page === "patients" && <Patients {...pageProps} />}
-            {page === "appointments" && <Appointments {...pageProps} />}
-            {page === "records" && <MedicalRecords {...pageProps} />}
-            {page === "billing" && <Billing {...pageProps} />}
-            {page === "reports" && <Reports {...pageProps} />}
-            {page === "users" && <UserManagement {...pageProps} />}
+            {(() => {
+              switch(page) {
+                case "dashboard":    return <Dashboard {...pageProps} onNavigate={setPage} />;
+                case "patients":     return <Patients {...pageProps} />;
+                case "appointments": return <Appointments {...pageProps} />;
+                case "records":      return <MedicalRecords {...pageProps} />;
+                case "billing":      return <Billing {...pageProps} />;
+                case "reports":      return <Reports {...pageProps} />;
+                case "users":        return <UserManagement {...pageProps} />;
+                default:             return <Dashboard {...pageProps} onNavigate={setPage} />;
+              }
+            })()}
           </div>
         </main>
       </div>
 
-      {toast && <Toast key={toast.key} message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+      {toast && <Toast key={toast.key} message={toast.message} type={toast.type} onClose={hideToast} />}
     </>
   );
 }
