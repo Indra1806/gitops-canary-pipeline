@@ -2,7 +2,6 @@
 
 This document tracks technical roadblocks encountered during the development and deployment of the GitOps Canary Pipeline, along with their root causes and engineered resolutions.
 
----
 
 ## 🟢 Milestone 1: Containerization & Local Development
 
@@ -18,19 +17,19 @@ This document tracks technical roadblocks encountered during the development and
 * **Root Cause:** Attempted to start the local Vite development server without first hydrating the local `node_modules` directory.
 * **Resolution:** Executed `npm install` to download required binaries based on the `package.json` lock state. Additionally, created a `.gitignore` file mapping to `node_modules/` to ensure the 300MB+ dependency folder was not committed to the Git repository.
 
----
+
 
 ## 🔵 Milestone 2: Kubernetes & ArgoCD (Pending)
 
 *(Errors related to Minikube provisioning, ArgoCD manifest application, and Git webhook syncing will be logged here).*
 
----
+
 
 ## 🟣 Milestone 3: Istio Service Mesh (Pending)
 
 *(Errors related to Istio proxy injection, VirtualServices, and DestinationRule routing will be logged here).*
 
----
+
 
 ## 📝 Ledger Template for Future Use
 ```text
