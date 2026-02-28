@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { Icon, Toast, Modal, UiverseButton } from './index';
 
 describe('Icon Component', () => {
@@ -22,6 +22,14 @@ describe('Icon Component', () => {
 });
 
 describe('Toast Component', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('renders the message and type', () => {
     render(<Toast message="Success!" type="success" onClose={() => {}} />);
     expect(screen.getByText('Success!')).toBeInTheDocument();
@@ -41,7 +49,6 @@ describe('Toast Component', () => {
   });
 
   it('calls onClose automatically after 3 seconds', () => {
-    vi.useFakeTimers();
     const onClose = vi.fn();
     render(<Toast message="Test" onClose={onClose} />);
     
@@ -50,7 +57,6 @@ describe('Toast Component', () => {
     });
     
     expect(onClose).toHaveBeenCalledTimes(1);
-    vi.useRealTimers();
   });
 });
 

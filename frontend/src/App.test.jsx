@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import App from './App';
 
@@ -43,55 +43,43 @@ describe('App Component', () => {
     expect(loader).toBeInTheDocument();
   });
 
-  it('renders login page after loading', async () => {
+  it('renders login page after loading', () => {
     render(<App />);
     
     act(() => {
       vi.advanceTimersByTime(1000);
     });
-    vi.useRealTimers();
 
-    await waitFor(() => {
-      expect(screen.getByText('Sign In')).toBeInTheDocument();
-    });
+    expect(screen.getByText('Sign In')).toBeInTheDocument();
     expect(screen.getByText('Clinic Management System')).toBeInTheDocument();
   });
 
-  it('allows user to login', async () => {
+  it('allows user to login', () => {
     render(<App />);
     
     act(() => {
       vi.advanceTimersByTime(1000);
     });
-    vi.useRealTimers();
 
-    await waitFor(() => {
-      expect(screen.getByText('Sign In')).toBeInTheDocument();
-    });
+    expect(screen.getByText('Sign In')).toBeInTheDocument();
 
     // Default credentials are pre-filled in the component state for demo purposes
     const loginButton = screen.getByText('Sign In', { selector: 'button' });
     
     fireEvent.click(loginButton);
 
-    await waitFor(() => {
-      expect(screen.getByText(/Hello, Dr./i)).toBeInTheDocument();
-    });
+    expect(screen.getByText(/Hello, Dr./i)).toBeInTheDocument();
     expect(screen.getByText('Dashboard')).toBeInTheDocument();
   });
 
-  it('navigates to Patients page', async () => {
+  it('navigates to Patients page', () => {
     render(<App />);
     
     act(() => {
       vi.advanceTimersByTime(1000);
     });
-    vi.useRealTimers();
 
-    await waitFor(() => expect(screen.getByText('Sign In')).toBeInTheDocument());
     fireEvent.click(screen.getByText('Sign In', { selector: 'button' }));
-
-    await waitFor(() => expect(screen.getByText('Dashboard')).toBeInTheDocument());
 
     // Click Patients in sidebar
     const patientsLink = screen.getByText('Patients');
@@ -100,18 +88,14 @@ describe('App Component', () => {
     expect(screen.getByText('Patient Management')).toBeInTheDocument();
   });
 
-  it('logs out correctly', async () => {
+  it('logs out correctly', () => {
     render(<App />);
     
     act(() => {
       vi.advanceTimersByTime(1000);
     });
-    vi.useRealTimers();
 
-    await waitFor(() => expect(screen.getByText('Sign In')).toBeInTheDocument());
     fireEvent.click(screen.getByText('Sign In', { selector: 'button' }));
-
-    await waitFor(() => expect(screen.getByText('Dashboard')).toBeInTheDocument());
 
     // Find logout button. It has title="Logout"
     const logoutBtn = screen.getByTitle('Logout');
