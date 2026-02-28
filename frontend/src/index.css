@@ -87,7 +87,7 @@
   font-family: 'DM Sans', sans-serif;
 }
 
-body { background: var(--red); color: var(--text); }
+body { background: #f8fafc; color: var(--text); }
 
 .serif { font-family: 'DM Serif Display', serif; }
 
@@ -727,6 +727,116 @@ tr:hover td { background: var(--teal-faint); }
   .form-grid, .form-grid-3 { grid-template-columns: 1fr; }
 }
 
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #ffffff;
+  gap: 16px;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+}
+
+/* From Uiverse.io by satyamchaudharydev - Adapted for Hospital Theme */
+.button {
+  margin: 0;
+  height: auto;
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  --border-right: 4px;
+  --text-stroke-color: var(--text-muted);
+  --animation-color: var(--med-blue);
+  --fs-size: 14px;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  font-size: var(--fs-size);
+  font-family: inherit;
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+  line-height: 1.2;
+}
+
+.hover-text {
+  position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+  white-space: nowrap;
+}
+
+.button:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 15px var(--animation-color));
+}
+
+/* Alert / Toast - Hospital Theme */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  background: var(--med-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--med-border);
+  color: var(--med-text);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--med-shadow-hover);
+  animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  min-width: 320px;
+  overflow: hidden;
+}
+
+.toast-success { border-left: 4px solid var(--hospital-green); }
+.toast-error { border-left: 4px solid var(--hospital-red); }
+
+.toast::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: currentColor;
+  opacity: 0.2;
+  width: 100%;
+  animation: toastProgress 3s linear forwards;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes toastProgress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
 .loader {
   width: 56px;
   height: 56px;
@@ -764,4 +874,109 @@ tr:hover td { background: var(--teal-faint); }
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* ─── NEUROLOGY LANDING PAGE STYLES ──────────────────────────────────────── */
+.landing-container {
+  min-height: 100vh;
+  background: #020617;
+  color: white;
+  overflow-x: hidden;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.neural-bg {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 2px 2px, rgba(37, 99, 235, 0.15) 1px, transparent 0);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  z-index: 0;
+}
+
+.landing-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 5%;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 5% 60px;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  border-radius: 100px;
+  color: #60a5fa;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(40px, 8vw, 72px);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  background: linear-gradient(to bottom, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 60px 5%;
+  position: relative;
+  z-index: 1;
+}
+
+.neuro-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 32px;
+  border-radius: 24px;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.neuro-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(37, 99, 235, 0.4);
+  transform: translateY(-8px);
+}
+
+.neuro-card-icon {
+  font-size: 32px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.neuro-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  margin-bottom: 12px;
 }
