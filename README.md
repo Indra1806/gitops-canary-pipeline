@@ -126,7 +126,7 @@ kubectl label namespace default istio-injection=enabled
 
 | Date | Error Code | Root Cause | Resolution |
 | --- | --- | --- | --- |
-| **[Current Date]** | `ENOENT: open '/app/package.json'` | Docker daemon could not locate `package.json` during the `RUN npm install` layer. | Relocated `Dockerfile` to the project root directory, ensuring it resides adjacent to `package.json`. Verified build context (`.`) was correctly passed. |
-| **[Current Date]** | `vite: command not found` | Attempted to start local dev server without resolving project dependencies. | Executed `npm install` to hydrate the local `node_modules` directory before running the `dev` script. Added `node_modules/` to `.gitignore` to prevent repository bloat. |
+| **27-Feb-2026** | `ENOENT: open '/app/package.json'` | Docker daemon could not locate `package.json` during the `RUN npm install` layer. | Relocated `Dockerfile` to the project root directory, ensuring it resides adjacent to `package.json`. Verified build context (`.`) was correctly passed. |
+| **28-Feb-2026** | `vite: command not found` | Attempted to start local dev server without resolving project dependencies. | Executed `npm install` to hydrate the local `node_modules` directory before running the `dev` script. Added `node_modules/` to `.gitignore` to prevent repository bloat. |
 
 *Architected and maintained to enterprise SRE standards.*
