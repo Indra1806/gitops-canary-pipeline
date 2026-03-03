@@ -936,6 +936,7 @@ tr:hover td { background: var(--teal-faint); transition: background 0.2s ease; }
   line-height: 1.1;
   margin-bottom: 24px;
   background: linear-gradient(to bottom, #fff, #94a3b8);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
