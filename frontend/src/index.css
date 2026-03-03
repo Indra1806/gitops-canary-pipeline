@@ -3,7 +3,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --teal: #d71573e0;
+  --teal: #11289de0;
   --teal-light: #14A8AE;
   --teal-dark: #085257;
   --teal-faint: #E8F7F7;
