@@ -46,6 +46,9 @@ const INITIAL_DATA = {
     { id: "R-002", patientId: "P-1001", doctorId: "u1", date: daysAgo(45), type: "Consultation", diagnosis: "Hypertension - Stage 1", prescription: "Amlodipine 5mg daily, Lifestyle changes", notes: "New diagnosis of stage 1 hypertension. Initiated antihypertensive therapy. Patient counseled on DASH diet and exercise.", vitals: { bp: "148/92", hr: "78", temp: "98.6°F", weight: "188 lbs" } },
     { id: "R-003", patientId: "P-1002", doctorId: "u1", date: daysAgo(3), type: "Annual Checkup", diagnosis: "Healthy - No concerns", prescription: "Multivitamin, Vitamin D 2000IU", notes: "Annual wellness exam. All labs within normal limits. Discussed preventive care and immunization schedule.", vitals: { bp: "112/70", hr: "64", temp: "98.4°F", weight: "132 lbs" } },
     { id: "R-004", patientId: "P-1003", doctorId: "u2", date: daysAgo(1), type: "Cardiology Review", diagnosis: "Mild Mitral Regurgitation", prescription: "Continue Metoprolol 25mg, Losartan 50mg", notes: "Echo shows stable mild MR. LVEF 60%. No significant changes from prior study. Will reimage in 12 months.", vitals: { bp: "138/88", hr: "68", temp: "98.2°F", weight: "204 lbs" } },
+    { id: "R-005", patientId: "P-1004", doctorId: "u1", date: daysAgo(30), type: "New Patient", diagnosis: "Seasonal Allergies", prescription: "Cetirizine 10mg daily", notes: "Patient presents with seasonal allergic rhinitis symptoms. Advised on allergen avoidance and started on antihistamine therapy.", vitals: { bp: "118/76", hr: "70", temp: "98.5°F", weight: "150 lbs" } },
+    { id: "R-006", patientId: "P-1005", doctorId: "u2", date: daysAgo(60), type: "Follow-up", diagnosis: "Type 2 Diabetes - Uncontrolled", prescription: "Metformin 500mg BID, Lifestyle changes", notes: "Patient's diabetes is poorly controlled with HbA1c of 9.2%. Initiated Metformin and provided diabetes education on diet and exercise.", vitals: { bp: "142/90", hr: "80", temp: "98.7°F", weight: "220 lbs" } },
+    { id: "R-007", patientId: "P-1006", doctorId: "u1", date: daysAgo(1), type: "New Patient", diagnosis: "Migraine Headaches", prescription: "Sumatriptan 50mg PRN, Lifestyle modifications", notes: "Patient reports recurrent migraine headaches. Prescribed Sumatriptan for acute treatment and advised on lifestyle modifications to reduce triggers.", vitals: { bp: "120/80", hr: "72", temp: "98.4°F", weight: "140 lbs" } },
   ],
   invoices: [
     { id: "INV-001", patientId: "P-1001", appointmentId: "A-001", date: daysAgo(7), dueDate: daysAhead(23), status: "paid", paidDate: daysAgo(5), items: [{ desc: "Consultation Fee", qty: 1, price: 120 }, { desc: "Blood Pressure Monitoring", qty: 1, price: 40 }, { desc: "Amlodipine 5mg (30 tabs)", qty: 1, price: 25 }] },
@@ -101,7 +104,7 @@ const Icon = ({ name, size = 16 }) => {
     dashboard: "🏥", patients: "👥", appointments: "📅", records: "📋",
     billing: "💳", reports: "📊", users: "⚙️", logout: "🚪",
     plus: "＋", edit: "✏️", trash: "🗑️", eye: "👁️", search: "🔍",
-    check: "✓", x: "✕", close: "✕", bell: "🔔", menu: "☰",
+    check: "✓", x: "✕", close: "✕", bell: "🔔", menu: "⛨",
     arrow_left: "←", arrow_right: "→", calendar: "📆", clock: "🕐",
     user: "👤", phone: "📞", email: "📧", location: "📍", heart: "❤️",
     pill: "💊", file: "📄", chart: "📈", money: "💰", warning: "⚠️",
@@ -163,7 +166,7 @@ function LoginPage({ users, onLogin, theme, toggleTheme }) {
         </label>
       </div>
       <div className="login-card" style={{ position: 'relative', overflow: 'hidden', borderTop: '4px solid var(--blue)' }}>
-        <div style={{ position: 'absolute', top: 0, right: 20, width: 30, height: 45, background: 'var(--blue)', clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '10px', fontWeight: 'bold', paddingTop: '2px' }}>v2.1</div>
+        <div style={{ position: 'absolute', top: 0, right: 20, width: 30, height: 45, background: 'var(--blue)', clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '10px', fontWeight: 'bold', paddingTop: '2px' }}>v2.2</div>
         <div className="login-logo">
           <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 20 }}>
             <div style={{ width: 80, height: 80, background: "var(--teal-faint)", borderRadius: "50%", margin: "0 auto 12px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 50, border: '2px dashed var(--teal)' }}>🏥</div>
@@ -1831,7 +1834,7 @@ export default function App() {
             <div className="sidebar-logo-icon">🏥</div>
             {!sidebarCollapsed && (
               <div>
-                <div className="sidebar-logo-text" style={{ fontFamily: "'DM Serif Display', serif" }}>ClinicOS    v2.1</div>
+                <div className="sidebar-logo-text" style={{ fontFamily: "'DM Serif Display', serif" }}>ClinicOS</div>
                 <div className="sidebar-logo-sub">Clinic Management System</div>
               </div>
             )}
@@ -1871,7 +1874,7 @@ export default function App() {
         {/* Main content */}
         <main className="main">
           <header className="topbar">
-            <button className="btn-icon" onClick={() => setSidebarCollapsed(c => !c)} style={{ fontSize: 18 }}>☰</button>
+            <button className="btn-icon" onClick={() => setSidebarCollapsed(c => !c)} style={{ fontSize: 18 }}>⛨</button>
             <div style={{ display: "flex", gap: 4, alignItems: "center", fontSize: 13 }}>
               {[{ id: "dashboard", label: "Home" }, { id: page, label: navItems.find(n => n.id === page)?.label }].filter((v,i,a) => a.findIndex(x=>x.id===v.id)===i && v.id).map((crumb, i, arr) => (
                 <span key={crumb.id}>
