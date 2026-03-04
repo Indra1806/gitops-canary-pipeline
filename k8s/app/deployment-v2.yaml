@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clinicos-v2
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clinicos
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: clinicos
+        version: v2
+    spec:
+      containers:
+      - name: clinicos
+        image: docker.io/indra1806/clinicos:v2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

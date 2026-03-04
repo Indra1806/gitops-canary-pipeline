@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clinicos-service
+  namespace: default
+spec:
+  selector:
+    app: clinicos
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
