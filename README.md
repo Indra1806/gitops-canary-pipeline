@@ -4,13 +4,11 @@
 **Domain:** Site Reliability Engineering (SRE), DevOps, Cloud-Native Architecture  
 **Application:** ClinicOS (Stateless React Dashboard)  
 
-
 ## 📊 Executive Summary
 
 This project demonstrates a production-grade Continuous Deployment (CD) pipeline utilizing **GitOps** principles and a **Service Mesh**. It solves the critical business problem of deployment downtime and the high risk associated with "big-bang" software releases. 
 
 By integrating **ArgoCD** for declarative infrastructure synchronization and **Istio** for advanced network routing, this architecture allows new software versions to be safely tested in production on a fractional user base (10% Canary) before full promotion.
-
 
 ## 🏗️ System Architecture & Traffic Flow
 
@@ -24,7 +22,7 @@ graph TD
         C[ArgoCD Controller] -.->|watches & pulls| B
         
         subgraph "Istio Service Mesh"
-            D[Istio Ingress Gateway]
+            D[Istio Ingress Gateway / Service]
             E[VirtualService]
             
             D --> E
@@ -41,7 +39,6 @@ graph TD
 
 ```
 
-
 ## ⚙️ Technology Stack
 
 | Domain | Technology | Implementation Details |
@@ -52,25 +49,28 @@ graph TD
 | **GitOps Controller** | ArgoCD | Automated, pull-based state reconciliation. |
 | **Traffic Management** | Istio | Service mesh for telemetry, security, and weighted routing. |
 
-
 ## 📂 Repository Structure
 
 ```text
-gitops-canary-pipeline/
-├── .gitignore
-├── Dockerfile                  # Multi-stage build instructions for ClinicOS
-├── package.json                # Node.js application dependencies
-├── README.md                   # Master documentation & Runbook
-├── src/                        # ClinicOS React application source code
-│   └── clinic-management-system.jsx
-└── k8s/                        # Kubernetes Infrastructure as Code (IaC)
-    ├── argocd/                 # Application sync manifests
-    ├── app/                    # Deployments & Services for v1 and v2
-    └── istio/                  # Gateway, VirtualService, and DestinationRules
+CMS/
+├── docs/                       # Project Documentation
+│   ├── Error_Ledger.md         # Infrastructure conflict resolution logs
+│   └── ARCHITECTURE_RUNBOOK.md # Detailed execution steps
+├── frontend/                   # ClinicOS React application source code
+│   ├── Dockerfile              # Multi-stage build instructions
+│   ├── package.json            # Node dependencies
+│   └── src/                    # React components
+├── k8s/                        # Kubernetes Infrastructure as Code (IaC)
+│   └── app/                    
+│       ├── deployment-v1.yaml  # Stable Release Manifest
+│       ├── deployment-v2.yaml  # Canary Release Manifest
+│       ├── service.yaml        # Internal Cluster Network Gateway
+│       ├── destination-rule.yaml # Istio Pod Categorization
+│       └── virtual-service.yaml  # Istio 90/10 Traffic Split Logic
+├── .gitignore                  
+└── README.md                   # Master Documentation
 
 ```
-
-
 
 ## 🚀 Engineering Runbook (Execution Steps)
 
@@ -88,45 +88,46 @@ gitops-canary-pipeline/
 ### Phase 2: Kubernetes & GitOps Initialization
 
 1. **Provision Infrastructure:**
+
 ```bash
 minikube start --memory=6144 --cpus=4
 
 ```
 
+2. **Install ArgoCD (Server-Side Apply to bypass CRD limits):**
 
-2. **Install ArgoCD:**
 ```bash
 kubectl create namespace argocd
-kubectl apply -n argocd -f [https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml](https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml)
+kubectl apply -n argocd -f [https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml](https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml) --server-side --force-conflicts
 
 ```
-
-
 
 ### Phase 3: Service Mesh Injection
 
-1. **Install Istio:**
+1. **Install Istio Control Plane:**
+
 ```bash
 istioctl install --set profile=default -y
-kubectl label namespace default istio-injection=enabled
 
 ```
 
+2. **Enable Proxy Injection & Restart Pods:**
 
+```bash
+kubectl label namespace default istio-injection=enabled
+kubectl rollout restart deployment clinicos-v1 clinicos-v2
+
+```
 
 ### Phase 4: Canary Deployment & Verification
 
-1. **Apply GitOps Manifests:** Let ArgoCD sync the `k8s/` directory.
-2. **Verify Traffic Split:** Access the Istio Ingress IP in a browser. Refreshing the application will yield the `v1` interface 90% of the time, and the `v2` (purple) interface 10% of the time, validating the zero-downtime routing protocol.
-
+1. **Apply GitOps Manifests:** Let ArgoCD sync the `k8s/app/` directory.
+2. **Verify Traffic Split:** Access the application via a local port-forward. Refreshing the application will yield the `v1` interface 90% of the time, and the `v2` (purple) interface 10% of the time, validating the zero-downtime routing protocol.
 
 ## 🛠️ Error Ledger & Troubleshooting
 
-*A record of critical errors encountered during development and their engineered solutions.*
-
-| Date | Error Code | Root Cause | Resolution |
-| --- | --- | --- | --- |
-| **27-Feb-2026** | `ENOENT: open '/app/package.json'` | Docker daemon could not locate `package.json` during the `RUN npm install` layer. | Relocated `Dockerfile` to the project root directory, ensuring it resides adjacent to `package.json`. Verified build context (`.`) was correctly passed. |
-| **28-Feb-2026** | `vite: command not found` | Attempted to start local dev server without resolving project dependencies. | Executed `npm install` to hydrate the local `node_modules` directory before running the `dev` script. Added `node_modules/` to `.gitignore` to prevent repository bloat. |
+View the [Error Ledger](https://www.google.com/search?q=docs/Error_Ledger.md) for detailed post-mortems on Kubernetes field ownership conflicts and infrastructure binary exclusion.
 
 *Architected and maintained to enterprise SRE standards.*
+
+```
