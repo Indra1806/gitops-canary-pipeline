@@ -126,8 +126,6 @@ kubectl rollout restart deployment clinicos-v1 clinicos-v2
 
 ## 🛠️ Error Ledger & Troubleshooting
 
-View the [Error Ledger](https://www.google.com/search?q=docs/Error_Ledger.md) for detailed post-mortems on Kubernetes field ownership conflicts and infrastructure binary exclusion.
+View the [Error Ledger](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/Error_Ledger.md) for detailed post-mortems on Kubernetes field ownership conflicts and infrastructure binary exclusion.
 
 *Architected and maintained to enterprise SRE standards.*
-
-```
