@@ -11,8 +11,8 @@ spec:
     - destination:
         host: clinicos-service
         subset: stable
-      weight: 100
+      weight: 0
     - destination:
         host: clinicos-service
         subset: canary
-      weight: 0
+      weight: 100
