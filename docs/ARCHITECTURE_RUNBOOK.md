@@ -7,30 +7,8 @@ This document serves as the learning journal and operational runbook for the Cli
 
 The following diagram illustrates the flow of code from the developer to the live infrastructure.
 
-```text
-[ Developer ]
-      │ (git push)
-      ▼
-[ GitHub Repository (The Source of Truth) ]
-├── /frontend/ (React App Code)
-└── /k8s/app/  (Declarative YAML Manifests)
-      │
-      │ (Continuous Pull/Reconciliation)
-      ▼
-[ Kubernetes Cluster (Minikube) ]
-├── Namespace: argocd
-│   └── ArgoCD Controller (Watches GitHub for changes)
-│
-└── Namespace: default
-    ├── Service: clinicos-service (Entrypoint)
-    │
-    ├── Deployment: clinicos-v1 (Stable)
-    │   └── Pod [ React App + Istio Envoy Proxy ]
-    │
-    └── Deployment: clinicos-v2 (Canary)
-        └── Pod [ React App + Istio Envoy Proxy ]
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/897480fc-da8c-4f94-9960-82170dadf5a8" />
 
-```
 
 ## Milestone 1: Containerization & Monorepo Strategy
 
@@ -148,5 +126,3 @@ Instead of manually running `kubectl delete` commands to remove the dormant v1 p
 
 **Status:** Pipeline Fully Operational.
 **End of Runbook.**
-
-```
