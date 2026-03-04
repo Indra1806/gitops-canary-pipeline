@@ -19,9 +19,13 @@ This document tracks technical roadblocks encountered during the development and
 
 
 
-## 🔵 Milestone 2: Kubernetes & ArgoCD (Pending)
+## 🔵 Milestone 2: Kubernetes & ArgoCD
 
-*(Errors related to Minikube provisioning, ArgoCD manifest application, and Git webhook syncing will be logged here).*
+### Issue 3: Kubernetes Field Ownership Conflict
+* **Error Trigger:** Executing `kubectl apply ... --server-side` for ArgoCD CRDs.
+* **Log Output:** `Apply failed with 1 conflict: conflict with "kubectl-client-side-apply"`
+* **Root Cause:** A collision between Kubernetes state managers. The initial installation attempt used client-side apply, assigning ownership of configuration fields to the client. The subsequent server-side apply attempted to take ownership of those same fields, causing the Kubernetes API to pause the deployment to prevent accidental overwrites.
+* **Resolution:** Appended the `--force-conflicts` flag to explicitly command the Kubernetes API to transfer ownership of all configurations to the server-side manager.
 
 
 
