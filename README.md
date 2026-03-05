@@ -4,6 +4,9 @@
 **Domain:** Site Reliability Engineering (SRE), DevOps, Cloud-Native Architecture  
 **Application:** ClinicOS (Stateless React Dashboard)  
 
+<img width="1536" height="1024" alt="clinicosimage" src="https://github.com/user-attachments/assets/f17efd09-1789-480e-ac6f-8b0f93aa67df" />
+
+
 ## 📊 Executive Summary
 
 This project demonstrates a production-grade Continuous Deployment (CD) pipeline utilizing **GitOps** principles and a **Service Mesh**. It solves the critical business problem of deployment downtime and the high risk associated with "big-bang" software releases. 
