@@ -29,11 +29,6 @@ This document tracks technical roadblocks encountered during the development and
 
 
 
-## 🟣 Milestone 3: Istio Service Mesh (Pending)
-
-*(Errors related to Istio proxy injection, VirtualServices, and DestinationRule routing will be logged here).*
-
-
 
 ## 📝 Ledger Template for Future Use
 ```text
