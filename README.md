@@ -74,13 +74,27 @@ CMS/
 └── README.md                   # Master Documentation
 
 ```
-<details><summary> 📚 Documentation Directory</summary></details>
-##  Documentation Directory
-* [Quick Start Guide](docs/quick-start.md) - Get the cluster running in 5 minutes.
-* [Easy Install](docs/easy-install.md) - Step-by-step prerequisites and setup.
-* [Cheatsheet](docs/cheatsheet.md) - Daily commands, URLs, and emergency resets.
-* [Troubleshooting](docs/troubleshooting.md) - Solutions to common infrastructure errors.
-* [Project Summary](docs/summary.md) - The business case and architectural overview.
+<details>
+  <summary>📚 Documentation Directory</summary>
+
+  ## 📚 Documentation & Reading Path
+
+Welcome to the ClinicOS GitOps platform. <br> To fully understand the architecture, business value, and operational mechanics of this project, <br> we recommend following this reading order:
+
+**1. The Concepts & Architecture**
+* 📖 [Executive Summary](docs/SUMMARY.md) - The business case and high-level problem this solves.
+* 🧠 [The SRE Journey](docs/THE_SRE_JOURNEY.md) - The engineering journal detailing how this was built and the lessons learned.
+* 🏗️ [Architecture Runbook](docs/ARCHITECTURE_RUNBOOK.md) - Deep dive into the declarative infrastructure and traffic flow.
+
+**2. Setup & Installation**
+* ⚡ [Quick Start Guide](docs/QUICK-START.md) - For experienced engineers who just want to spin up the cluster in 5 minutes.
+* 🛠️ [Easy Install](docs/EASY-INSTALL.md) - A methodical, step-by-step setup guide with prerequisites.
+
+**3. Day-to-Day Operations**
+* 🚀 [Operations Cheatsheet](docs/CHEATSHEET.md) - Daily commands, service URLs, and emergency reset protocols.
+* 🔧 [Troubleshooting & Error Ledger](docs/TROUBLESHOOTING.md) - Known issues, K8s conflicts, and their engineered solutions.
+</details>
+
 
 ## 🚀 Engineering Runbook (Execution Steps)
 

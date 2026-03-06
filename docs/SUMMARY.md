@@ -27,3 +27,5 @@ The platform operates through a four-stage automated lifecycle: <br>
 
 
 *Status: Architecture fully operational and validated via local Kubernetes control plane.*
+
+➡️ **Next Step:** Read [The SRE Journey: Building the Platform](THE_SRE_JOURNEY.md)

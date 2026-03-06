@@ -101,3 +101,6 @@ The core theme of this journey was crossing the bridge from **Imperative** engin
 ### Istio
 * `istioctl install --set profile=default -y` - Install the core service mesh components.
 * `kubectl label namespace default istio-injection=enabled` - Command the mesh to auto-inject Envoy proxies into a namespace.
+
+
+➡️ **Next Step:** Review the [Architecture Runbook](ARCHITECTURE_RUNBOOK.md)

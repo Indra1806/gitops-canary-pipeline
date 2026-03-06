@@ -142,3 +142,6 @@ kubectl port-forward svc/clinicos-service 8081:80
 
 Open a new browser tab and navigate to `http://localhost:8081`.
 *If you refresh the page multiple times, you will occasionally see the UI switch from Teal (v1) to Purple (v2), proving your 90/10 Canary Service Mesh is fully operational!*
+
+
+➡️ **Next Step:** Keep the [Operations Cheatsheet](/docs/cheatsheet.md) handy for daily management.

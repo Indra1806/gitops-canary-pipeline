@@ -32,7 +32,7 @@ istioctl install --set profile=default -y
 kubectl label namespace default istio-injection=enabled
 ```
 
-*(If the `istioctl` command fails on Windows, please see our [Troubleshooting Guide](docs\TROUBLESHOOTING.md) for the manual binary installation).*
+*(If the `istioctl` command fails on Windows, please see our [Troubleshooting Guide](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/TROUBLESHOOTING.md) for the manual binary installation).*
 
 ### Step 3: Install the GitOps Controller (ArgoCD)
 
@@ -96,3 +96,6 @@ minikube stop
 ```
 
 To permanently delete the cluster and start fresh later, run `minikube delete`.
+
+
+➡️ **Next Step:** Keep the [Operations Cheatsheet](/DOCS/CHEATSHEET.md) handy for daily management.

@@ -94,3 +94,6 @@
 * **CD:** ArgoCD UI shows a green "Healthy" heart and "Synced" status.
 * **Mesh:** Spamming refresh on `localhost:8081` correctly yields a 90% Teal / 10% Purple UI split.
 * **Compute:** Unused application versions are deleted from GitHub, and ArgoCD automatically prunes the pods from the cluster to save RAM.
+
+
+➡️ **Next Step:** If something breaks, consult the [Troubleshooting Guide](/docs/troubleshooting.md)

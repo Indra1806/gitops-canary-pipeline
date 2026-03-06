@@ -25,6 +25,7 @@ This document outlines the most common roadblocks you might encounter while spin
 * **Symptom:** When running the initial `kubectl apply` for ArgoCD, the terminal outputs an error regarding the `applicationsets.argoproj.io` Custom Resource Definition (CRD).
 * **Root Cause:** By default, `kubectl apply` saves a copy of the configuration in a hidden text label (client-side annotation). The ArgoCD configuration file is so massive that it exceeds Kubernetes' hard size limit for annotations.
 * **The Fix:** Shift the processing burden to the cluster's API using Server-Side Apply.
+
 ```bash
 kubectl apply -n argocd -f [https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml](https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml) --server-side
 ```
@@ -104,3 +105,6 @@ istio-*/
 
 
 3. If you accidentally already committed them, you must remove them from the cache: `git rm -r --cached istio-*/` before committing the `.gitignore` update.
+
+
+🏠 **Back to Home:** [Return to Main README](../README.md)
