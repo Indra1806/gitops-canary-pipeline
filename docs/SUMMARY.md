@@ -1,3 +1,5 @@
+➡️ <kbd>**Next Step:**</kbd> Read [The SRE Journey: Building the Platform](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/THE_SRE_JOURNEY.md)
+
 # Executive Summary: ClinicOS GitOps Platform
 
 **The Gist:** A zero-downtime, fully automated Continuous Deployment (CD) platform utilizing GitOps state reconciliation and mathematically enforced network routing to completely eliminate software deployment risk.
@@ -28,4 +30,4 @@ The platform operates through a four-stage automated lifecycle: <br>
 
 *Status: Architecture fully operational and validated via local Kubernetes control plane.*
 
-➡️ **Next Step:** Read [The SRE Journey: Building the Platform](THE_SRE_JOURNEY.md)
+➡️ <kbd>**Next Step:**</kbd> Read [The SRE Journey: Building the Platform](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/THE_SRE_JOURNEY.md)

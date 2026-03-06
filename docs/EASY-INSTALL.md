@@ -1,3 +1,5 @@
+➡️ <kbd>**Next Step:**</kbd> Keep the [Operations Cheatsheet](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/CHEATSHEET.md) handy for daily management.
+
 #  Easy Installation Guide (ClinicOS GitOps Platform)
 
 Welcome! This guide will walk you through standing up the complete ClinicOS enterprise infrastructure on your local machine. By the end of this guide, you will have a running Kubernetes cluster, a continuous deployment controller (ArgoCD), and a mathematically routed Service Mesh (Istio).
@@ -144,4 +146,4 @@ Open a new browser tab and navigate to `http://localhost:8081`.
 *If you refresh the page multiple times, you will occasionally see the UI switch from Teal (v1) to Purple (v2), proving your 90/10 Canary Service Mesh is fully operational!*
 
 
-➡️ **Next Step:** Keep the [Operations Cheatsheet](/docs/cheatsheet.md) handy for daily management.
+➡️ <kbd>**Next Step:**</kbd> Keep the [Operations Cheatsheet](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/CHEATSHEET.md) handy for daily management.

@@ -1,3 +1,5 @@
+➡️ <kbd>**Next Step:**</kbd> If something breaks, consult the [Troubleshooting Guide](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/TROUBLESHOOTING.md)
+
 # 🚀 ClinicOS GitOps & Service Mesh: End-to-End Cheatsheet
 
 **The Gist:** A zero-downtime, pull-based Continuous Deployment pipeline that automatically builds React artifacts, synchronizes infrastructure state via ArgoCD, and safely routes Canary traffic using an Istio Service Mesh.
@@ -96,4 +98,4 @@
 * **Compute:** Unused application versions are deleted from GitHub, and ArgoCD automatically prunes the pods from the cluster to save RAM.
 
 
-➡️ **Next Step:** If something breaks, consult the [Troubleshooting Guide](/docs/troubleshooting.md)
+➡️ <kbd>**Next Step:**</kbd> If something breaks, consult the [Troubleshooting Guide](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/TROUBLESHOOTING.md)

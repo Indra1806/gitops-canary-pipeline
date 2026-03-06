@@ -1,3 +1,5 @@
+➡️ <kbd>**Next Step:**</kbd> Keep the [Operations Cheatsheet](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/CHEATSHEET.md) handy for daily management.
+
 # ⚡ Quick Start Guide: ClinicOS GitOps Platform
 
 Welcome to the ClinicOS infrastructure! This guide will take you from zero to a fully operational, locally hosted GitOps pipeline with a 90/10 Canary traffic split in under 5 minutes.
@@ -98,4 +100,4 @@ minikube stop
 To permanently delete the cluster and start fresh later, run `minikube delete`.
 
 
-➡️ **Next Step:** Keep the [Operations Cheatsheet](/DOCS/CHEATSHEET.md) handy for daily management.
+➡️ <kbd>**Next Step:**</kbd> Keep the [Operations Cheatsheet](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/CHEATSHEET.md) handy for daily management.

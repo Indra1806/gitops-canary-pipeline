@@ -1,3 +1,5 @@
+➡️ <kbd>**Next Step:**</kbd> Review the [Architecture Runbook](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/ARCHITECTURE_RUNBOOK.md)
+
 # The SRE Chronicles: Building the ClinicOS GitOps Platform
 
 ## Foreword: Crossing the Bridge
@@ -103,4 +105,4 @@ The core theme of this journey was crossing the bridge from **Imperative** engin
 * `kubectl label namespace default istio-injection=enabled` - Command the mesh to auto-inject Envoy proxies into a namespace.
 
 
-➡️ **Next Step:** Review the [Architecture Runbook](ARCHITECTURE_RUNBOOK.md)
+➡️ <kbd>**Next Step:**</kbd> Review the [Architecture Runbook](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/ARCHITECTURE_RUNBOOK.md)

@@ -1,3 +1,5 @@
+<kbd>🏠 **Back to Home:**</kbd> [Return to Main README](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/README.md)
+
 # 🔧 Troubleshooting & Known Issues
 
 Welcome to the ClinicOS troubleshooting guide. Cloud-native infrastructure can be complex, and errors are a normal part of the engineering process. 
@@ -107,4 +109,4 @@ istio-*/
 3. If you accidentally already committed them, you must remove them from the cache: `git rm -r --cached istio-*/` before committing the `.gitignore` update.
 
 
-🏠 **Back to Home:** [Return to Main README](../README.md)
+<kbd>🏠 **Back to Home:**</kbd> [Return to Main README](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/README.md)

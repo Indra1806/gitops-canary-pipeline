@@ -1,3 +1,6 @@
+➡️ <kbd>**Next Step:**</kbd> Ready to deploy? Choose the [Quick Start Guide](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/QUICK-START.md) or the [Easy Install Guide](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/EASY-INSTALL.md)
+
+
 # 🏥 ClinicOS: GitOps & Service Mesh Architecture
 
 ## Executive Summary
@@ -129,4 +132,5 @@ Instead of manually running `kubectl delete` commands to remove the dormant v1 p
 
 
 
-➡️ **Next Step:** Ready to deploy? Choose the [Quick Start Guide](/docs/quick-start.md) or the [Easy Install Guide](/docs/easy-install.md)
+➡️ <kbd>**Next Step:**</kbd> Ready to deploy? Choose the [Quick Start Guide](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/QUICK-START.md) or the [Easy Install Guide](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/EASY-INSTALL.md)
+
