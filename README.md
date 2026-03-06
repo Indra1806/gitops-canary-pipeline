@@ -74,6 +74,13 @@ CMS/
 └── README.md                   # Master Documentation
 
 ```
+<details><summary> 📚 Documentation Directory</summary></details>
+##  Documentation Directory
+* [Quick Start Guide](docs/quick-start.md) - Get the cluster running in 5 minutes.
+* [Easy Install](docs/easy-install.md) - Step-by-step prerequisites and setup.
+* [Cheatsheet](docs/cheatsheet.md) - Daily commands, URLs, and emergency resets.
+* [Troubleshooting](docs/troubleshooting.md) - Solutions to common infrastructure errors.
+* [Project Summary](docs/summary.md) - The business case and architectural overview.
 
 ## 🚀 Engineering Runbook (Execution Steps)
 
