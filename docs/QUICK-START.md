@@ -98,4 +98,4 @@ minikube stop
 To permanently delete the cluster and start fresh later, run `minikube delete`.
 
 
-➡️ **Next Step:** Keep the [Operations Cheatsheet](/DOCS/CHEATSHEET.md) handy for daily management.
+➡️ **Next Step:** Keep the [Operations Cheatsheet](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/README.md) handy for daily management.
