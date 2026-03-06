@@ -12,7 +12,8 @@ This document outlines the most common roadblocks you might encounter while spin
 * **Symptom:** Minikube becomes unresponsive, or running `kubectl get pods` shows a status of `OOMKilled` (Out Of Memory).
 * **Root Cause:** Enterprise tools like Istio and ArgoCD are resource-intensive. The default Minikube allocation (usually 2GB of RAM) is insufficient to run the Service Mesh and the GitOps controller simultaneously.
 * **The Fix:** Destroy the current cluster and provision a new one with extended memory.
-  ```bash
+
+```bash
   minikube delete
   minikube start --memory=6144 --cpus=4
 ```
@@ -26,7 +27,7 @@ This document outlines the most common roadblocks you might encounter while spin
 * **Root Cause:** By default, `kubectl apply` saves a copy of the configuration in a hidden text label (client-side annotation). The ArgoCD configuration file is so massive that it exceeds Kubernetes' hard size limit for annotations.
 * **The Fix:** Shift the processing burden to the cluster's API using Server-Side Apply.
 
-```bash
+```
 kubectl apply -n argocd -f [https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml](https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml) --server-side
 ```
 
@@ -37,6 +38,7 @@ kubectl apply -n argocd -f [https://raw.githubusercontent.com/argoproj/argo-cd/s
 * **Symptom:** When attempting the Server-Side Apply fix above, Kubernetes halts the deployment due to a field ownership conflict.
 * **Root Cause:** Kubernetes detects that two different state managers (the client and the server) are trying to control the same configuration fields and pauses to prevent accidental overwrites.
 * **The Fix:** Force the API to transfer ownership to the server-side manager.
+  
 ```bash
 kubectl apply -n argocd -f [https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml](https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml) --server-side --force-conflicts
 ```
@@ -69,6 +71,7 @@ kubectl apply -n argocd -f [https://raw.githubusercontent.com/argoproj/argo-cd/s
 * **Symptom:** Running `kubectl get pods` shows your application pods running, but they only have one container. The Istio Envoy proxy is missing.
 * **Root Cause:** Istio only injects proxies into namespaces that have been explicitly labeled, and it only does so *when the pod is created*. If the pods existed before Istio was installed, they will not have the proxy.
 * **The Fix:** Label the namespace and gracefully restart the deployments to trigger the injection.
+  
 ```bash
 kubectl label namespace default istio-injection=enabled
 kubectl rollout restart deployment clinicos-v1 clinicos-v2
@@ -107,4 +110,4 @@ istio-*/
 3. If you accidentally already committed them, you must remove them from the cache: `git rm -r --cached istio-*/` before committing the `.gitignore` update.
 
 
-🏠 **Back to Home:** [Return to Main README](../README.md)
+🏠 **Back to Home:** [Return to Main README](https://github.com/Indra1806/gitops-canary-pipeline/README.md)
