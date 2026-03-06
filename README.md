@@ -74,10 +74,10 @@ CMS/
 └── README.md                   # Master Documentation
 
 ```
+ ## 📚 Documentation & Reading Path
 <details>
   <summary>📚 Documentation Directory</summary>
 
-  ## 📚 Documentation & Reading Path
 
 Welcome to the ClinicOS GitOps platform. <br> To fully understand the architecture, business value, and operational mechanics of this project, <br> we recommend following this reading order:
 
