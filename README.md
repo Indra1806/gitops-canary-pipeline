@@ -126,19 +126,19 @@ Welcome to the ClinicOS GitOps platform.
 
 **1. The Concepts & Architecture**
 
-* 📖 [Executive Summary](https://www.google.com/search?q=docs/SUMMARY.md) - The business case and high-level problem this solves.
-* 🧠 [The SRE Journey](https://www.google.com/search?q=docs/THE_SRE_JOURNEY.md) - The engineering journal detailing how this was built and the lessons learned.
-* 🏗️ [Architecture Runbook](https://www.google.com/search?q=docs/ARCHITECTURE_RUNBOOK.md) - Deep dive into the declarative infrastructure and traffic flow.
+* 📖 [Executive Summary](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/SUMMARY.md) - The business case and high-level problem this solves.
+* 🧠 [The SRE Journey](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/THE_SRE_JOURNEY.md) - The engineering journal detailing how this was built and the lessons learned.
+* 🏗️ [Architecture Runbook](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/CMS_Project_Blueprint.docx) - Deep dive into the declarative infrastructure and traffic flow.
 
 **2. Setup & Installation**
 
-* ⚡ [Quick Start Guide](https://www.google.com/search?q=docs/QUICK-START.md) - For experienced engineers who just want to spin up the cluster in 5 minutes.
-* 🛠️ [Easy Install](https://www.google.com/search?q=docs/EASY-INSTALL.md) - A methodical, step-by-step setup guide with prerequisites.
+* ⚡ [Quick Start Guide](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/QUICK-START.md) - For experienced engineers who just want to spin up the cluster in 5 minutes.
+* 🛠️ [Easy Install](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/EASY-INSTALL.md) - A methodical, step-by-step setup guide with prerequisites.
 
 **3. Day-to-Day Operations**
 
-* 🚀 [Operations Cheatsheet](https://www.google.com/search?q=docs/CHEATSHEET.md) - Daily commands, service URLs, and emergency reset protocols.
-* 🔧 [Troubleshooting & Error Ledger](https://www.google.com/search?q=docs/TROUBLESHOOTING.md) - Known issues, K8s conflicts, and their engineered solutions.
+* 🚀 [Operations Cheatsheet](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/CHEATSHEET.md) - Daily commands, service URLs, and emergency reset protocols.
+* 🔧 [Troubleshooting & Error Ledger](https://github.com/Indra1806/gitops-canary-pipeline/blob/main/docs/Error_Ledger.md) - Known issues, K8s conflicts, and their engineered solutions.
 
 </details>
 
@@ -205,3 +205,7 @@ View the <kbd>[Error Ledger](https://github.com/Indra1806/gitops-canary-pipeline
 *Architected and maintained to enterprise SRE standards.*
 
 </details>
+
+<div>
+<p>Give a Star</p>
+</div>
